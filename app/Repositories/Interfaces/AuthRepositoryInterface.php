@@ -4,8 +4,8 @@ namespace App\Repositories\Interfaces;
 
 use App\Models\User;
 
-interface AuthRepositoryInterface {
-
+interface AuthRepositoryInterface
+{
     public function create(array $data): User;
     public function findByEmail(string $email): ?User;
 }

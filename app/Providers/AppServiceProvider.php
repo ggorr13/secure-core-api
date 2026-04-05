@@ -2,8 +2,13 @@
 
 namespace App\Providers;
 
-use App\Repositories\AuthRepository;
+use App\Models\User;
+use App\Policies\UserPolicy;
+use App\Repositories\Eloquent\AuthRepository;
+use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
             AuthRepositoryInterface::class,
             AuthRepository::class
         );
+
+        $this->app->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class
+        );
     }
 
     /**
@@ -24,6 +34,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::policy(User::class, UserPolicy::class);
     }
 }

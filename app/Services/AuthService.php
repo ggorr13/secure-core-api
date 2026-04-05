@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthService
 {
-    public function __construct(protected AuthRepositoryInterface $authRepository){
+    public function __construct(private AuthRepositoryInterface $authRepository){
         //
     }
 

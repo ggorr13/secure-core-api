@@ -50,10 +50,3 @@ function something()
 {
     // ..
 }
-
-function createAdmin(): User
-{
-    $user = User::factory()->create();
-    $user->roles()->attach(Role::firstOrCreate(['name' => 'admin']));
-    return $user;
-}
