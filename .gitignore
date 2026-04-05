@@ -1,25 +1,52 @@
-*.log
+# --- OS Specific ---
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDE & Editors ---
+/.idea
+/.vscode
+/.fleet
+/.zed
+/.nova
+.phpactor.json
+.phpunit.result.cache
+/.phpunit.cache
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+
+# --- Environment & Configuration ---
 .env
 .env.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
+.env.local
+.env.staging
+.env.testing
 /auth.json
+Homestead.json
+Homestead.yaml
+
+# --- Dependencies ---
+/vendor
 /node_modules
+
+# --- Laravel Specific ---
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
-/vendor
-_ide_helper.php
-Homestead.json
-Homestead.yaml
-Thumbs.db
+/*.log
+
+# --- Testing & Reports ---
+.phpunit.result.cache
+/tests/coverage
+/.phpunit.cache
+
+# --- System & Compiled ---
+.server.key
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
