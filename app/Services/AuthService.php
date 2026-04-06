@@ -11,11 +11,12 @@ use Illuminate\Validation\ValidationException;
 
 class AuthService
 {
-    public function __construct(private AuthRepositoryInterface $authRepository){
-        //
-    }
+    public function __construct(
+        private AuthRepositoryInterface $authRepository
+    ) {}
 
     /**
+     * Authenticate user and return token.
      * @throws ValidationException
      */
     public function login(LoginDTO $dto): array
@@ -24,7 +25,7 @@ class AuthService
 
         if (!$user || !Hash::check($dto->password, $user->password)) {
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials do not match our records.'],
+                'email' => [__('auth.failed')],
             ]);
         }
 
@@ -36,13 +37,9 @@ class AuthService
 
     public function register(RegisterDTO $dto): array
     {
-        $user = $this->authRepository->create([
-            'name'     => $dto->name,
-            'email'    => $dto->email,
-            'password' => Hash::make($dto->password),
-        ]);
+        $user = $this->authRepository->create($dto);
 
-        $user->roles()->attach(2);
+        $user->roles()->syncWithoutDetaching([2]);
 
         return [
             'user'  => $user,
@@ -52,6 +49,6 @@ class AuthService
 
     public function logout(User $user): void
     {
-        $user->currentAccessToken()->delete();
+        $user->currentAccessToken()?->delete();
     }
 }

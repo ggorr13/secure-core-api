@@ -10,9 +10,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class AdminUserService
 {
-    public function __construct(private UserRepositoryInterface $userRepository) {
-        //
-    }
+    public function __construct(
+        private UserRepositoryInterface $userRepository
+    ) {}
 
     public function listUsers(): LengthAwarePaginator
     {
@@ -26,33 +26,20 @@ class AdminUserService
 
     public function storeUser(UserDTO $dto): User
     {
-        return $this->userRepository->create([
-            'name'     => $dto->name,
-            'email'    => $dto->email,
-            'password' => $dto->password,
-            'role'     => $dto->role,
-        ]);
+        return $this->userRepository->create($dto);
     }
 
     public function updateUser(int $id, UserDTO $dto): User
     {
         $target = $this->userRepository->findById($id);
-
-        // Gate will use UserPolicy@manage
         Gate::authorize('manage', $target);
 
-        return $this->userRepository->update($id, [
-            'name'  => $dto->name,
-            'email' => $dto->email,
-            'role'  => $dto->role,
-        ]);
+        return $this->userRepository->update($id, $dto);
     }
 
     public function deleteUser(int $id): void
     {
         $target = $this->userRepository->findById($id);
-
-        // Gate ensures admin cannot delete themselves
         Gate::authorize('manage', $target);
 
         $this->userRepository->delete($id);
@@ -61,7 +48,7 @@ class AdminUserService
     public function makeAdmin(int $id): User
     {
         $target = $this->userRepository->findById($id);
-        Gate::authorize('manage', $target); // Policy will handle the logic
+        Gate::authorize('manage', $target);
 
         return $this->userRepository->updateRole($id, 'admin');
     }
@@ -69,7 +56,7 @@ class AdminUserService
     public function removeAdmin(int $id): User
     {
         $target = $this->userRepository->findById($id);
-        Gate::authorize('manage', $target); // Prevents admin from removing their own admin status
+        Gate::authorize('manage', $target);
 
         return $this->userRepository->updateRole($id, 'user');
     }
