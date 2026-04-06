@@ -2,6 +2,11 @@
 
 This is a high-performance, robust Task Management API built with **Laravel 13**. While the project is lightweight, it is architected with a **Production-Ready Mindset**, utilizing professional design patterns to ensure maximum maintainability, security, and testability.
 
+## 🔗 API Base URL
+The API is configured to run locally by default:
+👉 **URL:** `http://localhost:8000/api`
+👉 **Documentation:** `http://localhost:8000/docs/api` (Powered by Scramble)
+
 ## 🏗 Architectural DNA
 Instead of over-engineering a focused-scale project with full "Clean Architecture" boilerplate, this API implements a **Decoupled Layered Pattern** that strictly prioritizes **SOLID** principles and **TDD**:
 
