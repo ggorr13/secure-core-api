@@ -1,45 +1,30 @@
 # 🚀 Secure Core API
 
-This is a high-load, robust Task Management API built with **Laravel 13**, focusing on **Clean Architecture**, **SOLID principles**, and **Test-Driven Development (TDD)**.
+This is a high-performance, robust Task Management API built with **Laravel 13**. While the project is lightweight, it is architected with a **Production-Ready Mindset**, utilizing professional design patterns to ensure maximum maintainability, security, and testability.
+
+## 🏗 Architectural DNA
+Instead of over-engineering a focused-scale project with full "Clean Architecture" boilerplate, this API implements a **Decoupled Layered Pattern** that strictly prioritizes **SOLID** principles and **TDD**:
+
+* **DTOs (Data Transfer Objects):** The single source of truth for data flowing between layers. No more "array-hunting" — just strict type safety and IDE autocompletion.
+* **Service Layer:** All business logic is centralized here, keeping Controllers thin and focused only on the HTTP lifecycle.
+* **Repository Pattern:** Complete abstraction of data persistence through **Interfaces**, allowing for seamless mocking in tests and decoupling from the Eloquent ORM.
+* **Dependency Injection:** Full utilization of Laravel's Service Container for decoupling components.
 
 ## 🛠 Tech Stack
 * **Framework:** Laravel 13.x (Latest Stable)
-* **PHP:** 8.3+
+* **PHP:** 8.3+ (Strictly typed)
 * **Database:** MySQL 8.4 / PostgreSQL 17
-* **Testing:** Pest 3.x (Feature & Unit tests)
-* **Documentation:** [Scramble](https://scramble.dedoc.co/) (Modern, Zero-config OpenAPI 3.1)
-* **Auth:** Laravel Sanctum (Stateful API Authentication)
+* **Testing:** Pest 3.x (Modern TDD suite)
+* **Documentation:** [Scramble](https://scramble.dedoc.co/) (OpenAPI 3.1)
 
 ---
 
-## ✨ Key Features
-* **Custom Role System:** Enterprise-grade logic for `Admin` and `User` roles using a Repository-Service pattern.
-* **Secure Role Management:** Dedicated endpoints for role promotion/demotion with strict **Self-Action Prevention** policies.
-* **Clean Architecture:** Strict layer separation using **DTOs**, **Repositories**, and **Services** to ensure scalability.
-* **Advanced Exception Handling:** Custom global rendering for Validation, Authentication, and Authorization (403) errors.
-* **Strict Mode Enabled:** Enforced `Model::shouldBeStrict()` to prevent N+1 queries and lazy loading violations in production.
+## 🧪 Testing & Reliability
+This project follows a strict **Test-Driven Development (TDD)** workflow to ensure 100% reliability of core business rules.
 
----
-
-## 📖 API Documentation
-The documentation is automatically generated in real-time, scanning your FormRequests and Resources to provide an interactive playground.
-
-👉 **URL:** `http://localhost:8000/docs/api`
-
----
-
-## 🧪 Testing Suite
-We maintain **100% Code Coverage** for core business logic using **Pest**.
-
-### Feature Tests
-Located in `tests/Feature`, these validate the entire HTTP lifecycle:
-* **Role-Based Access Control (RBAC):** Verifying middleware and policy enforcement.
-* **Data Integrity:** Ensuring transactions rollback correctly on failure.
-
-### Unit Tests
-Located in `tests/Unit`, focusing on isolated logic:
-* **Service Layer Mocking:** Testing `AdminUserService` with mocked repositories for speed.
-* **DTO Mapping:** Validating data consistency between the Controller and Service layers.
+* **Pest 3.x:** Elegant and fast testing for both Feature and Unit layers.
+* **Mockery:** Used to isolate the Service layer by mocking Repository dependencies, ensuring unit tests execute in milliseconds.
+* **Coverage:** Every critical path (Auth, RBAC, Data Integrity) is backed by an automated test.
 
 **Run the suite:**
 ```bash
@@ -48,33 +33,44 @@ php artisan test
 
 ---
 
+## ✨ Key Features
+* **Role-Based Access Control (RBAC):** Managed via strict Policies and Gates to prevent unauthorized access.
+* **Strict Mode Enabled:** Enforced `Model::shouldBeStrict()` to catch N+1 queries and lazy loading violations during development.
+* **Atomic Transactions:** All multi-step database operations are wrapped in `DB::transaction` within Repositories to ensure data integrity.
+* **Standardized API Resources:** Consistent JSON structure for all responses and error handling.
+
+---
+
 ## ⚙️ Installation & Setup
 
-1.  **Clone & Enter:**
+1.  **Clone the repository:**
     ```bash
     git clone https://github.com/ggorr13/secure-core-api.git
     cd secure-core-api
     ```
 
-2.  **Install PHP & JS Dependencies:**
+2.  **Install dependencies:**
     ```bash
     composer install
     ```
 
-3.  **Environment Setup:**
+3.  **Environment Configuration:**
     ```bash
     cp .env.example .env
     php artisan key:generate
     ```
 
-4.  **Database Strategy:**
+4.  **Database Migration & Seeding:**
     ```bash
     php artisan migrate --seed
     ```
 
-5.  **Serve:**
+5.  **Run the application:**
     ```bash
     php artisan serve
     ```
 
 ---
+
+### Developed by **Gor** (Backend Developer)
+*Focused on Clean Code, SOLID principles, and Scalable Backend Solutions.*
