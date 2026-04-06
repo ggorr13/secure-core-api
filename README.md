@@ -40,3 +40,48 @@ This project follows a strict **Test-Driven Development (TDD)** workflow to ensu
 **Run the suite:**
 ```bash
 php artisan test
+```
+
+---
+
+## ✨ Key Features
+* **Role-Based Access Control (RBAC):** Managed via strict Laravel Policies and Gates to prevent unauthorized access.
+* **Strict Mode Enabled:** Enforced `Model::shouldBeStrict()` to catch N+1 queries and lazy loading violations during development.
+* **Atomic Transactions:** All multi-step database operations are wrapped in `DB::transaction` within Repositories to ensure data integrity.
+* **Standardized API Resources:** Consistent JSON structure for all responses and error handling via Eloquent Resources.
+
+---
+
+## ⚙️ Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/ggorr13/secure-core-api.git](https://github.com/ggorr13/secure-core-api.git)
+    cd secure-core-api
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    composer install
+    ```
+
+3.  **Environment Configuration:**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+4.  **Database Migration & Seeding:**
+    ```bash
+    php artisan migrate --seed
+    ```
+
+5.  **Run the application:**
+    ```bash
+    php artisan serve
+    ```
+
+---
+
+### Developed by **Gor**
+*Focused on Clean Code, SOLID principles, and Scalable Backend Solutions.*
